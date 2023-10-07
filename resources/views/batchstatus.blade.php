@@ -11,6 +11,7 @@
 
 </head>
 <body class=" font-nunito font-medium">
+<div id="preloader"></div>
 
     <!-- header -->
   <nav class="container relative max-w-full shadow-sm" >
@@ -18,7 +19,7 @@
     <div class="flex justify-between items-center bg-[#0D324D] w-full">
         <!-- logo -->
         <div class="ml-14">
-          <a href="/"><img class="h-20 w-40" src="image003.png" alt="logo"></a>
+        <a href="/"><img class="h-20 w-40" src="image003.png" alt="logo"></a>
         </div>
         <!-- menu -->
         <div class="text-white hidden space-x-6 md:flex ml-80">
@@ -28,7 +29,7 @@
         </div>
         <!-- button -->
         <a
-          href="https://www.google.com/maps/dir/51.1959881,-113.9975539/forex+cargo+calgary/@51.1296835,-114.1513443,12.75z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x5371706a155ad99d:0xec2e45f16fabcf8b!2m2!1d-114.0607559!2d51.0183743?entry=ttu"
+          href="https://www.google.com/maps/dir//forex+cargo+calgary/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x5371706a155ad99d:0xec2e45f16fabcf8b?sa=X&ved=2ahUKEwivju-uk8uBAxXMHzQIHYPBCmEQ9Rd6BAhNEAA&ved=2ahUKEwivju-uk8uBAxXMHzQIHYPBCmEQ9Rd6BAhcEAU"
           class=" hidden text-white p-3 px-6 pt-2 rounded-full border-solid border-[#ffdd02] border-2 baseline mr-32 hover:text-[#355691] duration-300 md:block"
           >Direction</a>
           <!-- Hamburger Icon -->
@@ -63,16 +64,33 @@
         <div class="flex flex-col text-left mt-16 space-y-4 ">
              <h1 class="text-4xl ">Track a transfer</h1>
              <p class="text-lg ">Your Invoice Number.</p>
-             <p class="text-2xl font-black ">{{ $invoice1 }}</p>
+             <p class="text-2xl font-black ">{{ $invoice }}</p>
         </div>
     <!-- Tracking order Steps -->
 
     <div class="flow-root mt-10 ml-6 mr-12 md:mx-0">
       <ul role="list" class="-mb-8">
-
+      @foreach ($batchstatus as  $batches)
+    
+            <div class="relative pb-8">
+                <div class="relative flex space-x-3">
+                    <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                        <div>
+                            <p class="text-sm text-black">{{ $batches->track_description }} <span class="text-sm text-black ml-6 font-bold">{{ $batches->track_location }}</span></p>
+                            
+                        </div>
+                        <div class="whitespace-nowrap text-right text-sm text-black">
+                            <time datetime="2020-09-28">{{ $batches->track_date }}</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+  
+@endforeach
 
      
-    @foreach ($invoice as $invoices)
+    @foreach ($detailstatus as $invoices)
       <li>
          <div class="relative pb-8">
            <span class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
@@ -87,14 +105,14 @@
           <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
           
             <div>
-            <p class="text-sm text-gray-500 ">{{ $invoices->generated_invoice }}</p>
+            <p class="text-sm text-gray-500 ">{{ $invoices->trackstat_transinv }}</p>
 
-              <p class="text-sm text-gray-500 ">{{ $invoices->description }}<span class="font-medium text-gray-900 ml-6">{{ $invoices->name }}</span></p>
+              <p class="text-sm text-gray-500 ">{{ $invoices->trackstat_description }}<span class="font-medium text-gray-900 ml-6">{{ $invoices->trackstat_location }}</span></p>
             
             </div>
            
             <div class="whitespace-nowrap text-right text-sm text-gray-500">
-              <time>{{ $invoices->date_update }}</time>
+              <time datetime="2020-09-28">{{ $invoices->trackstat_date }}</time>
             </div>
           </div>
         </div>
@@ -129,6 +147,12 @@ btn.addEventListener('click', () => {
   nav.classList.toggle('hidden')
 })
 
+</script>
+<script>
+  var loader = document.getElementById("preloader");
+  window.addEventListener("load", function(){
+    loader.style.display="none";
+  })
 </script>
 </body>
 </html>

@@ -11,7 +11,6 @@
 
 </head>
 <body class=" font-nunito font-medium">
-<div id="preloader"></div>
 
     <!-- header -->
   <nav class="container relative max-w-full shadow-sm" >
@@ -19,7 +18,7 @@
     <div class="flex justify-between items-center bg-[#0D324D] w-full">
         <!-- logo -->
         <div class="ml-14">
-        <a href="/"><img class="h-20 w-40" src="image003.png" alt="logo"></a>
+          <a href="/"><img class="h-20 w-40" src="image003.png" alt="logo"></a>
         </div>
         <!-- menu -->
         <div class="text-white hidden space-x-6 md:flex ml-80">
@@ -29,7 +28,7 @@
         </div>
         <!-- button -->
         <a
-          href="https://www.google.com/maps/dir//forex+cargo+calgary/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x5371706a155ad99d:0xec2e45f16fabcf8b?sa=X&ved=2ahUKEwivju-uk8uBAxXMHzQIHYPBCmEQ9Rd6BAhNEAA&ved=2ahUKEwivju-uk8uBAxXMHzQIHYPBCmEQ9Rd6BAhcEAU"
+          href="https://www.google.com/maps/dir/51.1959881,-113.9975539/forex+cargo+calgary/@51.1296835,-114.1513443,12.75z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x5371706a155ad99d:0xec2e45f16fabcf8b!2m2!1d-114.0607559!2d51.0183743?entry=ttu"
           class=" hidden text-white p-3 px-6 pt-2 rounded-full border-solid border-[#ffdd02] border-2 baseline mr-32 hover:text-[#355691] duration-300 md:block"
           >Direction</a>
           <!-- Hamburger Icon -->
@@ -70,25 +69,7 @@
 
     <div class="flow-root mt-10 ml-6 mr-12 md:mx-0">
       <ul role="list" class="-mb-8">
-      @foreach ($batch as $index => $batches)
-    @if ($index < 6)
-        <li>
-            <div class="relative pb-8">
-                <div class="relative flex space-x-3">
-                    <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
-                        <div>
-                            <p class="text-sm text-black">{{ $batches->description }} <span class="text-sm text-black ml-6 font-bold">{{ $batches->location }}</span></p>
-                            
-                        </div>
-                        <div class="whitespace-nowrap text-right text-sm text-black">
-                            <time datetime="2020-09-28">{{ $batches->date }}</time>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-    @endif
-@endforeach
+
 
      
     @foreach ($invoice as $invoices)
@@ -106,14 +87,14 @@
           <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
           
             <div>
-            <p class="text-sm text-gray-500 ">{{ $invoices->transinv }}</p>
+            {{-- <p class="text-sm text-gray-500 ">{{ $invoices->generated_invoice }}</p> --}}
 
-              <p class="text-sm text-gray-500 ">{{ $invoices->description }}<span class="font-medium text-gray-900 ml-6">{{ $invoices->location }}</span></p>
+              <p class="text-sm text-gray-500 ">{{ $invoices->description }}<span class="font-medium text-gray-900 ml-6">{{ $invoices->remarks }}</span></p>
             
             </div>
            
             <div class="whitespace-nowrap text-right text-sm text-gray-500">
-              <time datetime="2020-09-28">{{ $invoices->date }}</time>
+              <time>{{ $invoices->date_update }}</time>
             </div>
           </div>
         </div>
@@ -148,12 +129,6 @@ btn.addEventListener('click', () => {
   nav.classList.toggle('hidden')
 })
 
-</script>
-<script>
-  var loader = document.getElementById("preloader");
-  window.addEventListener("load", function(){
-    loader.style.display="none";
-  })
 </script>
 </body>
 </html>
